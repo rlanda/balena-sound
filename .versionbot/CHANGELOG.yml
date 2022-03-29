@@ -1,4 +1,20 @@
 - commits:
+    - subject: "core: refactor to remove modes"
+      hash: 08def84e9e74e6687df9425059349155b3b23ce5
+      body: |
+        - Sound modes removed
+        - Devices will now start in "standalone" mode and upgrade if possible
+        - Service inter-dependency removed
+      footer:
+        Change-type: major
+        change-type: major
+        Signed-off-by: Tomás Migone <tomas@balena.io>
+        signed-off-by: Tomás Migone <tomas@balena.io>
+      author: Tomás Migone
+      nested: []
+  version: 4.0.0
+  date: 2022-03-29T19:33:05.602Z
+- commits:
     - subject: update meet-up event page URL
       hash: b328c51534f39ba7c3b2777602ad46d10e416dd2
       body: ""
