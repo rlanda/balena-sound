@@ -39,7 +39,7 @@ function route_input_sink() {
 
 # Route any existing source to the input router ("balena-sound.input")
 function route_input_source() {
-  local INPUT_DEVICE=$(arecord -l | awk '/card [0-9]:/ { print $3 }')
+  local INPUT_DEVICE=$(arecord -l | awk '/card [0-9]:/ { print $3 }' | head -n 13)
 
   if [[ -n "$INPUT_DEVICE" ]]; then
     local INPUT_DEVICE_FULLNAME="alsa_input.$INPUT_DEVICE.analog-stereo"
@@ -72,7 +72,9 @@ function reset_sound_config() {
 }
 
 SOUND_SUPERVISOR_PORT=${SOUND_SUPERVISOR_PORT:-80}
-SOUND_SUPERVISOR="$(ip route | awk '/default / { print $3 }'):$SOUND_SUPERVISOR_PORT"
+#SOUND_SUPERVISOR="$(ip route | awk '/default / { print $3 }'):$SOUND_SUPERVISOR_PORT"
+SOUND_SUPERVISOR="127.0.0.1:$SOUND_SUPERVISOR_PORT"
+
 # Wait for sound supervisor to start
 while ! curl --silent --output /dev/null "$SOUND_SUPERVISOR/ping"; do sleep 5; echo "Waiting for sound supervisor to start at $SOUND_SUPERVISOR"; done
 

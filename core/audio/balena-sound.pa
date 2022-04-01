@@ -13,3 +13,8 @@ set-default-sink balena-sound.input
 # balena-sound.output: Set to audio sink specified by audio block
 load-module module-loopback latency_msec=%INPUT_LATENCY% source=balena-sound.input.monitor %INPUT_SINK%
 load-module module-loopback latency_msec=%OUTPUT_LATENCY% source=balena-sound.output.monitor %OUTPUT_SINK%
+
+#
+# Detect input microphone
+load-module module-alsa-source device=hw:0,0 source_name=alsa_input.hda-intel.analog-stereo
+.ifexists module-udev-detect.so

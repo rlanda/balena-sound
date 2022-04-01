@@ -2,7 +2,9 @@
 set -e
 
 SOUND_SUPERVISOR_PORT=${SOUND_SUPERVISOR_PORT:-80}
-SOUND_SUPERVISOR="$(ip route | awk '/default / { print $3 }'):$SOUND_SUPERVISOR_PORT"
+#SOUND_SUPERVISOR="$(ip route | awk '/default / { print $3 }'):$SOUND_SUPERVISOR_PORT"
+SOUND_SUPERVISOR="127.0.0.1:$SOUND_SUPERVISOR_PORT"
+
 # Wait for sound supervisor to start
 while ! curl --silent --output /dev/null "$SOUND_SUPERVISOR/ping"; do sleep 5; echo "Waiting for sound supervisor to start at $SOUND_SUPERVISOR"; done
 
@@ -35,3 +37,6 @@ else
   echo "Multi-room client disabled. Exiting..."
   exit 0
 fi
+
+echo "Multi-room client ended."
+

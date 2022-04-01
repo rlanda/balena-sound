@@ -2,7 +2,7 @@
 FROM balenablocks/multiroom
 WORKDIR /usr/src
 
-ENV PULSE_SERVER=tcp:audio:4317
+ENV PULSE_SERVER=tcp:localhost:4317
 ENV PULSE_SINK=balena-sound.output
 
 COPY start.sh .
