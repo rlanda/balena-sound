@@ -39,7 +39,7 @@ function route_input_sink() {
 
 # Route any existing source to the input router ("balena-sound.input")
 function route_input_source() {
-  local INPUT_DEVICE=$(arecord -l | awk '/card [0-9]:/ { print $3 }' | head -n 13)
+  local INPUT_DEVICE=$(arecord -l | awk '/card [0-9]:/ { print $3 }' | head -n 1)
 
   if [[ -n "$INPUT_DEVICE" ]]; then
     local INPUT_DEVICE_FULLNAME="alsa_input.$INPUT_DEVICE.analog-stereo"
